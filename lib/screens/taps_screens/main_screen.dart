@@ -47,6 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                     final prefs = await SharedPreferences.getInstance();
                     prefs.setString(AppConstants.keyAccessToken, "");
                     logProvider.reSetControllers();
+                    provider.setPage(0);
                     if (!mounted) return;
                     Navigator.pushReplacementNamed(context, logIn);
                   },
