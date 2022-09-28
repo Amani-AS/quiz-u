@@ -17,6 +17,7 @@ enum LogInState { initial, loading, loaded, error }
 class Item {
   Item(this.flag, this.region);
 
+
   final String? flag;
 
   final RegionInfo? region;
@@ -30,11 +31,23 @@ class LogInProvider with ChangeNotifier {
   final TextEditingController otpCode2 = TextEditingController();
   final TextEditingController otpCode3 = TextEditingController();
   final TextEditingController otpCode4 = TextEditingController();
+  reSetControllers(){
+    phoneController.text="";
+    nameController.text="";
+    otpCode1.text="";
+    otpCode2.text="";
+    otpCode3.text="";
+    otpCode4.text="";
+
+
+
+  }
 
   bool isValid = true;
   String? code;
   LogIn? logIn;
   NewName? name;
+  bool isAuthantcated=false;
 
   APIResult result = APIResult();
   String? errorMessage;

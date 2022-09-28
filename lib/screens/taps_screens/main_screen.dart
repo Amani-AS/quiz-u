@@ -22,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     TapsProvider provider = Provider.of<TapsProvider>(context);
+    LogInProvider logProvider=Provider.of<LogInProvider>(context);
     List menu = [
       {"icon": Icons.home, "label": "Home"},
       {"icon": MyFlutterApp.images, "label": "Leaders"},
@@ -45,6 +46,7 @@ class _MainScreenState extends State<MainScreen> {
                   onPressed: () async {
                     final prefs = await SharedPreferences.getInstance();
                     prefs.setString(AppConstants.keyAccessToken, "");
+                    logProvider.reSetControllers();
                     if (!mounted) return;
                     Navigator.pushReplacementNamed(context, logIn);
                   },

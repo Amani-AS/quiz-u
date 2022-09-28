@@ -13,7 +13,7 @@ import 'package:quiz_u/data/apis/topscore_api.dart';
 import 'package:quiz_u/data/models/user/user_model.dart';
 
 class TapsProvider with ChangeNotifier {
-  int page = 0;
+  int page =0;
 
   setPage(page) {
     this.page = page;

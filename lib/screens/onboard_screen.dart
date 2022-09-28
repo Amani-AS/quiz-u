@@ -28,7 +28,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     List info = [
       {
         "image": "assets/images/quiz-img.png",
-        "title": "Test yor knowledge withe multiple questions ",
+        "title": "Test yor knowledge with multiple questions ",
       },
       {
         "image": "assets/images/time.png",
