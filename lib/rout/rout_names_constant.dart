@@ -1,0 +1,10 @@
+const String splash = 'splash';
+const String auth = 'auth';
+const String logIn = 'sign_in';
+const String otp = 'otp';
+const String addName = 'add_name';
+const String mainScreen = '/main';
+const String questions = '/questions';
+const String fail = '/fail';
+const String getScore = '/getScore';
+const String onBoard = '/onboard';
