@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_u/data/providers/login_provider.dart';
+import 'package:quiz_u/data/providers/provider_list/providers_export.dart';
 import 'package:quiz_u/ui/widgets/buttons.dart';
 import 'package:quiz_u/ui/widgets/logo.dart';
 
@@ -13,6 +14,7 @@ class LogInScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     LogInProvider provider = Provider.of<LogInProvider>(context);
+    TapsProvider tapsProvider=Provider.of<TapsProvider>(context);
     OutlineInputBorder outlineInputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(6.0),
       borderSide: const BorderSide(color: Colors.white),
@@ -102,6 +104,7 @@ class LogInScreen extends StatelessWidget {
                   text: "Start",
                   onTap: () {
                     provider.onSubmitPhone(formKey, context);
+                    tapsProvider.setPage(0);
                   },
                 )
               ],
