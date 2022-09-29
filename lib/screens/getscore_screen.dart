@@ -42,11 +42,12 @@ class _GetScoreScreenState extends State<GetScoreScreen> {
                     provider.setIsSkipped(false);
                     provider.resetIndex();
                     provider.resetScore();
-                    provider.restQuestionNo();
+
 
                     if (provider.state == QuestionState.loaded) {
                       if (!mounted) return;
                       Navigator.pushReplacementNamed(context, mainScreen);
+                      provider.restQuestionNo();
                     }
                   },
                 )),

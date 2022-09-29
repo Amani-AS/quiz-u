@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:quiz_u/data/models/top_scors/score_model.dart';
+
 import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
+
 
 // database table and column names
 const String tableUserScore = 'scores';
@@ -62,8 +62,8 @@ class DatabaseHelper {
   // open the database
   _initDatabase() async {
     // The path_provider plugin gets the right directory for Android or iOS.
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, _databaseName);
+    // Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(await getDatabasesPath(), _databaseName);
     // Open the database. Can also add an onUpdate callback parameter.
     return await openDatabase(path,
         version: _databaseVersion,

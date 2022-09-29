@@ -55,10 +55,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         onComplete: () {
                           if (questionsProvider.score > 0) {
                             Navigator.pushReplacementNamed(context, getScore);
-
                             questionsProvider.resetIndex();
                           } else {
                             Navigator.pushReplacementNamed(context, fail);
+                            questionsProvider.resetIndex();
+                            questionsProvider.resetScore();
                           }
                         },
                       ),
