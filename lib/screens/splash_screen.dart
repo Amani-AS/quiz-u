@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:quiz_u/data/apis/login_api.dart';
+import 'package:quiz_u/data/apis/token_api.dart';
+import 'package:quiz_u/data/data_constants.dart';
 
 import 'package:quiz_u/rout/rout_names_constant.dart';
 import 'package:quiz_u/ui/widgets/logo.dart';
@@ -21,6 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
     bool seen = (prefs.getBool('seen') ?? false);
 
     if (seen) {
+
+
       if (!mounted) return;
       Navigator.pushReplacementNamed(context, auth);
     } else {

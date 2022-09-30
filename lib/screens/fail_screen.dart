@@ -30,7 +30,8 @@ class FailScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, mainScreen);
-
+                    qProvider.setIsSkipped(false);
+                    qProvider.restQuestionNo();
                   },
                 )),
             Center(
@@ -52,7 +53,7 @@ class FailScreen extends StatelessWidget {
                         onTap: () {
                           Navigator.pushReplacementNamed(context, questions);
                           qProvider.setIsSkipped(false);
-
+                          qProvider.restQuestionNo();
                         },
                         text: "Try Again")
                   ],

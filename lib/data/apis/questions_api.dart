@@ -39,18 +39,18 @@ class QuestionsApi {
         result.hasError = false;
         result.data = questionsResponse.data;
 
-        print(jsonResponse);
+
       } else {
         jsonResponse = convert.jsonDecode(response.body);
         DynamicResponse  dynamicResponse = DynamicResponse.fromJson(jsonResponse);
 
         result.hasError = dynamicResponse.success!;
         result.message=dynamicResponse.message;
-        print(jsonResponse);
+
       }
     } catch (ex) {
       result = APIResponseErrorHandler.parseError(ex);
-      print(ex);
+
     }
 
     result1 = result;

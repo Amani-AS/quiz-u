@@ -47,7 +47,7 @@ class LogInProvider with ChangeNotifier {
   String? code;
   LogIn? logIn;
   NewName? name;
-  bool isAuthantcated=false;
+
 
   APIResult result = APIResult();
   String? errorMessage;
@@ -161,7 +161,7 @@ class LogInProvider with ChangeNotifier {
 
   void onSubmitPhone(formKey, context) async {
     if (formKey.currentState!.validate()) {
-      // if (!mounted) return;
+      ;
       Navigator.pushReplacementNamed(context, otp);
     }
   }

@@ -15,7 +15,7 @@ class NewNameApi {
     var url = Uri.parse("${AppConstants.baseUrl}/Name");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token=  prefs.getString(AppConstants.keyAccessToken,);
-    print(token);
+
     http.Response response;
     dynamic jsonResponse;
 
@@ -37,14 +37,14 @@ class NewNameApi {
         result.hasError = false;
         result.data = nameResponse.data;
 
-        print(jsonResponse);
+
       } else {
         jsonResponse = convert.jsonDecode(response.body);
         nameResponse = NameResponse.fromJson(jsonResponse);
 
         result.hasError = nameResponse.data!.success!;
         result.message=nameResponse.data!.message;
-        print(jsonResponse);
+
       }
     } catch (ex) {
       result = APIResponseErrorHandler.parseError(ex);

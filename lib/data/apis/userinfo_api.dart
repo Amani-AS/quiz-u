@@ -19,7 +19,7 @@ class UserInfoApi {
     String? token = prefs.getString(
       AppConstants.keyAccessToken,
     );
-    print(token);
+
     var url = Uri.parse("${AppConstants.baseUrl}/UserInfo");
 
     http.Response response;
@@ -32,14 +32,14 @@ class UserInfoApi {
     try {
       response =
           await http.get(url, headers: {"Authorization":"$token"});
-      print(response.body);
+
       if (response.statusCode == 200) {
         jsonResponse = convert.jsonDecode(response.body);
         userResponse = UserResponse.fromJson(jsonResponse);
         result.hasError = false;
         result.data = userResponse.data;
 
-        print(jsonResponse);
+
       } else {
         jsonResponse = convert.jsonDecode(response.body);
         DynamicResponse dynamicResponse =
@@ -47,7 +47,7 @@ class UserInfoApi {
 
         result.hasError = !dynamicResponse.success!;
         result.message = dynamicResponse.message;
-        print(jsonResponse);
+
       }
     } catch (ex) {
       result = APIResponseErrorHandler.parseError(ex);

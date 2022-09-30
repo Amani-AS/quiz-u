@@ -17,7 +17,7 @@ class QuestionsProvider with ChangeNotifier {
   QuestionState state = QuestionState.initial;
 
   List<Question>? questions = [];
-  List<UserScore>? scores = [];
+  List<UserScore> scores = [];
 
   APIResult result = APIResult();
   String? errorMessage;
@@ -42,19 +42,25 @@ class QuestionsProvider with ChangeNotifier {
     DatabaseHelper helper = DatabaseHelper.instance;
 
     List<UserScore>? scores = await helper.queryAllUserScore();
-    if (scores!.isNotEmpty) {
+    if (scores != null) {
       this.scores = scores;
-    } else {
-
-    }
+    } else {}
   }
 
   saveScore() async {
+    DatabaseHelper helper = DatabaseHelper.instance;
     UserScore sco = UserScore();
     sco.score = score.toString();
     sco.time = scoreTime;
+    await helper.insert(sco);
+  }
 
+  deleteScore() async {
+    DatabaseHelper helper = DatabaseHelper.instance;
 
+    await helper.deleteAll();
+    scores = [];
+    notifyListeners();
   }
 
   getQuestions() async {
@@ -113,7 +119,8 @@ class QuestionsProvider with ChangeNotifier {
       setIsSkipped(false);
     }
   }
-  setIndex(){
+
+  setIndex() {
     ++index;
     notifyListeners();
   }
@@ -122,10 +129,12 @@ class QuestionsProvider with ChangeNotifier {
     index = 0;
     notifyListeners();
   }
+
   restQuestionNo() {
     questionNo = 0;
     notifyListeners();
   }
+
   resetScore() {
     score = 0;
     notifyListeners();

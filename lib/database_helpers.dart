@@ -88,6 +88,10 @@ class DatabaseHelper {
     int id = await db!.insert(tableUserScore, score.toMap());
     return id;
   }
+   deleteAll() async {
+    Database? db = await database;
+    await db!.delete(tableUserScore);
+  }
 
   Future<UserScore?> queryUserScore(int id) async {
     Database? db = await database;

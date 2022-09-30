@@ -6,15 +6,24 @@ import 'package:quiz_u/ui/widgets/Texts.dart';
 
 import 'package:quiz_u/data/models/user/user_model.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
 
   @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+
+
+  @override
   Widget build(BuildContext context) {
+
     TapsProvider provider = Provider.of<TapsProvider>(context);
     QuestionsProvider questionsProvider =
         Provider.of<QuestionsProvider>(context);
     double height = MediaQuery.of(context).size.height;
+
 
     return Container(
             height: height*7,
@@ -23,8 +32,7 @@ class Profile extends StatelessWidget {
               future: provider.getInfo(),
               builder: (context, snapShot) {
                 questionsProvider.read();
-
-                questionsProvider.scores!
+                questionsProvider.scores
                     .sort((b, a) => a.score!.compareTo(b.score!));
                 if (snapShot.hasData) {
                   return Column(
@@ -59,25 +67,24 @@ class Profile extends StatelessWidget {
                                   color: Colors.orange,
                                   fontWeight: FontWeight.w700),
                             ),
-                      questionsProvider.scores!.isEmpty ||
-                          questionsProvider.scores == null
+                      questionsProvider.scores.isEmpty
                           ? const SizedBox()
                           :
 
                       SizedBox(
                         height: height*0.4,
                         child: ListView.separated(
-                          itemCount: questionsProvider.scores!.length,
+                          itemCount: questionsProvider.scores.length,
                           itemBuilder: (context,index)=>
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Texts(
                                       text:
-                                      "${questionsProvider.scores![index].time}"),
+                                      "${questionsProvider.scores[index].time}"),
                                   Texts(
                                     text:
-                                    "${questionsProvider.scores![index].score}",
+                                    "${questionsProvider.scores[index].score}",
                                   )
                                 ],
                               ), separatorBuilder: (BuildContext context, int index) =>const SizedBox(height: 15,),),

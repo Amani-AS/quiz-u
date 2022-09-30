@@ -26,24 +26,23 @@ class TokenApi {
 
     try {
       response = await http.get(url, headers: {
-        "Authorization":"$token"
+        "Authorization":token
       });
-      print(response.body);
-      print(response.statusCode);
+
       if (response.statusCode == AppConstants.responseCodeSuccess) {
         jsonResponse = convert.jsonDecode(response.body);
         tokenResponse = TokenResponse.fromJson(jsonResponse);
         result.hasError = false;
         result.data = tokenResponse.data;
 
-        print(jsonResponse);
+
       } else {
         jsonResponse = convert.jsonDecode(response.body);
         tokenResponse = TokenResponse.fromJson(jsonResponse);
 
         result.hasError = tokenResponse.data!.success!;
         result.message=tokenResponse.data!.message;
-        print(jsonResponse);
+
       }
     } catch (ex) {
       result = APIResponseErrorHandler.parseError(ex);

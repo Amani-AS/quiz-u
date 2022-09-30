@@ -23,6 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     TapsProvider provider = Provider.of<TapsProvider>(context);
     LogInProvider logProvider=Provider.of<LogInProvider>(context);
+    QuestionsProvider questionsProvider=Provider.of<QuestionsProvider>(context);
     List menu = [
       {"icon": Icons.home, "label": "Home"},
       {"icon": MyFlutterApp.images, "label": "Leaders"},
@@ -47,6 +48,8 @@ class _MainScreenState extends State<MainScreen> {
                     final prefs = await SharedPreferences.getInstance();
                     prefs.setString(AppConstants.keyAccessToken, "");
                     logProvider.reSetControllers();
+                   await questionsProvider.deleteScore();
+                 print(questionsProvider.scores.length)  ;
 
                     if (!mounted) return;
                     Navigator.pushReplacementNamed(context, logIn);

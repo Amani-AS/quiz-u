@@ -33,7 +33,7 @@ class LogInApi {
         "OTP": otp,
         "mobile": "0$phone"
       });
-   print(response.body);
+
       if (response.statusCode == 201) {
         jsonResponse = convert.jsonDecode(response.body);
         logInResponse = LogInResponse.fromJson(jsonResponse);
@@ -43,10 +43,7 @@ class LogInApi {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString(
             AppConstants.keyAccessToken, logInResponse.data!.token!);
-        print(prefs.get(AppConstants.keyAccessToken));
-        print(result.data);
 
-        print(result1.data);
       } else {
         jsonResponse = convert.jsonDecode(response.body);
         DynamicResponse dynamicResponse = DynamicResponse.fromJson(
@@ -55,7 +52,7 @@ class LogInApi {
         result.hasError = !dynamicResponse.success!;
         result.message = dynamicResponse.message;
 
-        print(jsonResponse);
+
       }
     } catch (ex) {
       result = APIResponseErrorHandler.parseError(ex);

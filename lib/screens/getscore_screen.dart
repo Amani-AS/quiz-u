@@ -47,8 +47,9 @@ class _GetScoreScreenState extends State<GetScoreScreen> {
                     if (provider.state == QuestionState.loaded) {
                       if (!mounted) return;
                       Navigator.pushReplacementNamed(context, mainScreen);
-                      provider.restQuestionNo();
+
                     }
+                    provider.restQuestionNo();
                   },
                 )),
             Center(

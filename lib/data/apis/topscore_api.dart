@@ -17,7 +17,7 @@ class TpoScoreApi {
   static Future<void> scores() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token=  prefs.getString(AppConstants.keyAccessToken,);
-    print(token);
+
     var url = Uri.parse("${AppConstants.baseUrl}/TopScores");
 
     http.Response response;
@@ -31,10 +31,10 @@ class TpoScoreApi {
       response = await http.get(url, headers: {
         "Authorization":"$token"
       });
-      print(response.statusCode);
+
       if (response.statusCode == 200) {
         jsonResponse = convert.jsonDecode(response.body);
-        print(jsonResponse);
+
         topScoreResponse = TopScoreResponse.fromJson(jsonResponse);
         result.hasError = false;
         result.data = topScoreResponse.data;
@@ -46,7 +46,7 @@ class TpoScoreApi {
 
         result.hasError = true;
         result.message=responses.message;
-        print(jsonResponse);
+
       }
     } catch (ex) {
       result = APIResponseErrorHandler.parseError(ex);
